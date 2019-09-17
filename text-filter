@@ -1,0 +1,17 @@
+# creat new text file
+def text_create(name,msg):
+    desktop_path='/Users/cynthia-bob/Desktop/'
+    full_path=desktop_path+name+'.txt'
+    file=open(full_path,'w')
+    file.write(msg)
+    file.close()
+    print('Done')
+# define text filter
+def text_filter(word, censored_word='grumpy', changed_word='peaceable'):
+    return word.replace(censored_word, changed_word) 
+# define text clean
+def censored_text_create(name, msg):
+    clean_msg=text_filter(msg)
+    text_create(name, clean_msg)
+# Example    
+censored_text_create（”Test“, “She is grumpy!”):   
