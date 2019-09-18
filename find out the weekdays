@@ -1,0 +1,35 @@
+the basic coding is from youngqj(CSDN username) https://blog.csdn.net/youngqj/article/details/12905877
+import datetime
+import time
+current = datetime.datetime.now()
+start = datetime.date(current.year,1,1)
+last_day = datetime.date(current.year,12,31)
+isfirst = start.weekday()
+last_week = last_day.strftime('%W')
+ 
+weeks={}
+if isfirst !=0:
+    end = datetime.timedelta(5-start.weekday()-1)
+    weeks[0]=[start,start+end]
+start += datetime.timedelta(7 - start.weekday())
+def print_date(i):
+    days = datetime.timedelta(weeks=i)
+    end = start + days 
+    if  i+1 == int(last_week):
+        weeks[i+1] = [end,last_day]
+    else:
+        weeks[i+1] = [end, end+datetime.timedelta(4)]
+ 
+def allweeks():
+    for i in range(0, int(last_week)):
+        print_date(i)
+    return weeks  
+        
+def main():
+    allweeks()
+    for (k,week) in weeks.items():
+        num = k+1<=9 and "0"+str(k+1) or str(k+1)
+        print((str(current.year)+num,str(week[0]),str(week[1])))
+ 
+if __name__ == "__main__":
+    main()
